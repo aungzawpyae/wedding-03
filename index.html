@@ -2166,6 +2166,14 @@
       box-shadow: 0 18px 32px -16px rgba(94, 34, 51, .65), 0 1px 0 rgba(255, 255, 255, .22) inset;
     }
 
+    #open-btn:disabled {
+      opacity: .58;
+      cursor: not-allowed;
+      filter: grayscale(.25);
+      box-shadow: none;
+      transform: none;
+    }
+
     #cover.heart-design .cover-scan {
       z-index: 4;
       top: 38%;
@@ -2520,7 +2528,7 @@
           </div>
         </div>
 
-        <button class="btn" id="open-btn" type="button" style="margin-top:14px">
+        <button class="btn" id="open-btn" type="button" style="margin-top:14px" disabled aria-disabled="true">
           <svg class="mail-button-icon" aria-hidden="true">
             <use href="#i-mail" />
           </svg>

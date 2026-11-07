@@ -2200,11 +2200,10 @@
       position: absolute;
       z-index: 6;
       top: 9px;
-      color: #c94f6c;
-      font-family: Georgia, serif;
-      font-size: 30px;
-      line-height: 1;
-      text-shadow: 0 2px 6px rgba(94, 34, 51, .22);
+      width: 42px;
+      height: 42px;
+      overflow: visible;
+      filter: drop-shadow(0 2px 5px rgba(94, 34, 51, .24));
       pointer-events: none;
     }
 
@@ -2220,6 +2219,16 @@
       margin-top: 22px;
       color: #93636b;
       line-height: 1.7;
+    }
+
+    @media (min-width: 601px) {
+      #cover {
+        place-items: start center;
+      }
+
+      .cover-inner {
+        margin-block: auto;
+      }
     }
 
     @media (max-width: 600px) {
@@ -2427,8 +2436,32 @@
       <svg class="corner br" viewBox="0 0 150 150" aria-hidden="true">
         <use href="#cluster" />
       </svg>
-      <span class="cover-corner-flower left" aria-hidden="true">✿</span>
-      <span class="cover-corner-flower right" aria-hidden="true">✿</span>
+      <svg class="cover-corner-flower left" viewBox="0 0 40 40" aria-hidden="true">
+        <g fill="#e6a4b3" stroke="#c94f6c" stroke-width=".8">
+          <ellipse cx="20" cy="9" rx="5.5" ry="8" />
+          <ellipse cx="20" cy="31" rx="5.5" ry="8" />
+          <ellipse cx="9" cy="20" rx="8" ry="5.5" />
+          <ellipse cx="31" cy="20" rx="8" ry="5.5" />
+          <ellipse cx="12" cy="12" rx="5.5" ry="7" transform="rotate(-45 12 12)" />
+          <ellipse cx="28" cy="12" rx="5.5" ry="7" transform="rotate(45 28 12)" />
+          <ellipse cx="12" cy="28" rx="5.5" ry="7" transform="rotate(45 12 28)" />
+          <ellipse cx="28" cy="28" rx="5.5" ry="7" transform="rotate(-45 28 28)" />
+        </g>
+        <circle cx="20" cy="20" r="4.5" fill="#be9a5b" />
+      </svg>
+      <svg class="cover-corner-flower right" viewBox="0 0 40 40" aria-hidden="true">
+        <g fill="#e6a4b3" stroke="#c94f6c" stroke-width=".8">
+          <ellipse cx="20" cy="9" rx="5.5" ry="8" />
+          <ellipse cx="20" cy="31" rx="5.5" ry="8" />
+          <ellipse cx="9" cy="20" rx="8" ry="5.5" />
+          <ellipse cx="31" cy="20" rx="8" ry="5.5" />
+          <ellipse cx="12" cy="12" rx="5.5" ry="7" transform="rotate(-45 12 12)" />
+          <ellipse cx="28" cy="12" rx="5.5" ry="7" transform="rotate(45 28 12)" />
+          <ellipse cx="12" cy="28" rx="5.5" ry="7" transform="rotate(45 12 28)" />
+          <ellipse cx="28" cy="28" rx="5.5" ry="7" transform="rotate(-45 28 28)" />
+        </g>
+        <circle cx="20" cy="20" r="4.5" fill="#be9a5b" />
+      </svg>
 
       <button class="badge-btn cover-scan" id="scan-btn" type="button"
         aria-label="QR code ဖြင့် ဖိတ်ကြားလွှာ ကို share လုပ်ရန်">

@@ -2177,9 +2177,43 @@
     }
 
     #cover.heart-design .corner {
-      width: 96px;
-      height: 96px;
-      opacity: .58;
+      z-index: 5;
+      width: 118px;
+      height: 118px;
+      opacity: .95;
+    }
+
+    #cover.heart-design .corner.tl,
+    #cover.heart-design .corner.tr {
+      top: -8px;
+    }
+
+    #cover.heart-design .corner.tl {
+      left: -8px;
+    }
+
+    #cover.heart-design .corner.tr {
+      right: -8px;
+    }
+
+    .cover-corner-flower {
+      position: absolute;
+      z-index: 6;
+      top: 9px;
+      color: #c94f6c;
+      font-family: Georgia, serif;
+      font-size: 30px;
+      line-height: 1;
+      text-shadow: 0 2px 6px rgba(94, 34, 51, .22);
+      pointer-events: none;
+    }
+
+    .cover-corner-flower.left {
+      left: 12px;
+    }
+
+    .cover-corner-flower.right {
+      right: 12px;
     }
 
     .cover-credit {
@@ -2381,18 +2415,20 @@
         <span class="heart">♥</span><span class="flower">✿</span><span class="heart">♥</span><span
           class="flower">✿</span>
       </div>
-      <svg class="corner tl" aria-hidden="true">
+      <svg class="corner tl" viewBox="0 0 150 150" aria-hidden="true">
         <use href="#cluster" />
       </svg>
-      <svg class="corner tr" aria-hidden="true">
+      <svg class="corner tr" viewBox="0 0 150 150" aria-hidden="true">
         <use href="#cluster" />
       </svg>
-      <svg class="corner bl" aria-hidden="true">
+      <svg class="corner bl" viewBox="0 0 150 150" aria-hidden="true">
         <use href="#cluster" />
       </svg>
-      <svg class="corner br" aria-hidden="true">
+      <svg class="corner br" viewBox="0 0 150 150" aria-hidden="true">
         <use href="#cluster" />
       </svg>
+      <span class="cover-corner-flower left" aria-hidden="true">✿</span>
+      <span class="cover-corner-flower right" aria-hidden="true">✿</span>
 
       <button class="badge-btn cover-scan" id="scan-btn" type="button"
         aria-label="QR code ဖြင့် ဖိတ်ကြားလွှာ ကို share လုပ်ရန်">
@@ -2411,14 +2447,13 @@
       </button>
 
       <div class="cover-body">
-        <p class="cover-to">Dear</p>
-        <p class="cover-guest" id="guest">ဧည့်သည်တော်</p>
         <h1 class="cover-heading">ဖိတ်ကြားအပ်ပါသည်</h1>
         <p class="cover-intro">နှစ်ဦး၏ ဘဝခရီးသစ်ကို အစပြုမည့် မင်္ဂလာအခမ်းအနားသို့<br>လေးစားစွာ ဖိတ်ကြားအပ်ပါသည်</p>
         <svg class="cover-divider" viewBox="0 0 240 18" fill="none" aria-hidden="true">
           <path d="M6 9h78M156 9h78" stroke="#BE9A5B" stroke-width="1" />
           <path d="M120 1.5 128 9l-8 7.5L112 9z" fill="#BE9A5B" />
-          <circle cx="94" cy="9" r="2.2" fill="#BE9A5B" /><circle cx="146" cy="9" r="2.2" fill="#BE9A5B" />
+          <circle cx="94" cy="9" r="2.2" fill="#BE9A5B" />
+          <circle cx="146" cy="9" r="2.2" fill="#BE9A5B" />
         </svg>
 
         <figure class="cover-photo">

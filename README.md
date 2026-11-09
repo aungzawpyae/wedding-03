@@ -1,4 +1,4 @@
-# Wedding Invitation — Hein Wai Oo & Mo Mo Aung Win
+# Wedding Invitation — Hein Wai Oo & Moth Moth Aung Win
 
 Static digital wedding invitation (single `index.html`, no build step).
 

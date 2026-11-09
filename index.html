@@ -9,7 +9,7 @@
     content="ဒေါက်တာ ဟိန်းဝေဦး နှင့် ဒေါက်တာ မို့မို့အောင်ဝင်း တို့၏ မင်္ဂလာပွဲ — ၂၉-၁၁-၂၀၂၆၊ နေပြည်တော် နှင့် ၀၆-၁၂-၂၀၂၆၊ ပဲခူး">
   <meta property="og:title" content="Hein Wai Oo &amp; Mo Mo Aung Win — Wedding Invitation">
   <meta property="og:description" content="29 Nov 2026 &amp; 6 Dec 2026 · 7:00 AM–11:00 AM · Nay Pyi Taw &amp; Bago">
-  <meta property="og:image" content="img/14.jpg">
+  <meta property="og:image" content="img/11.jpg">
   <meta name="theme-color" content="#fbeef0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1461,44 +1461,6 @@
       }
     }
 
-    /* ---------- Countdown ---------- */
-    .count {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 10px;
-      max-width: 360px;
-      margin: 22px auto 0
-    }
-
-    .count div {
-      background: var(--rose-soft);
-      color: #fff;
-      border-radius: 8px;
-      padding: 12px 4px 8px;
-      display: grid;
-      gap: 0;
-      box-shadow: 0 8px 20px rgba(201, 79, 108, .18)
-    }
-
-    .count b {
-      font-family: var(--f-serif);
-      font-size: 30px;
-      font-weight: 600;
-      line-height: 1;
-      font-variant-numeric: tabular-nums
-    }
-
-    .count small {
-      font-family: var(--f-serif);
-      font-size: 10px;
-      letter-spacing: .2em;
-      margin-top: 6px
-    }
-
-    .count.done div {
-      background: var(--rose)
-    }
-
     /* ---------- Thank you ---------- */
     .thanks {
       padding-bottom: 60px;
@@ -2840,19 +2802,12 @@
         </svg></div>
     </section>
 
-    <!-- Calendar + countdown -->
+    <!-- Closing invitation line -->
     <section class="sec" id="calendar">
       <p class="my" style="margin:0;font-size:14.5px;line-height:2.1">
         ဆွေမျိုးသူငယ်ချင်းများ ကြွရောက်ချီးမြှင့်ပေးကြပါရန်<br>
         လေးစားစွာဖြင့် ဖိတ်ကြားအပ်ပါသည်။
       </p>
-
-      <div class="count" id="count" aria-live="polite">
-        <div><b id="c-d">--</b><small>DAY</small></div>
-        <div><b id="c-h">--</b><small>HOUR</small></div>
-        <div><b id="c-m">--</b><small>MIN</small></div>
-        <div><b id="c-s">--</b><small>SEC</small></div>
-      </div>
     </section>
 
 
@@ -2966,7 +2921,6 @@
 
       /* ---------- CONFIG: edit these to reuse the template ---------- */
       var CONFIG = {
-        eventDate: new Date('2026-11-29T07:00:00+06:30'),   // Myanmar time (UTC+6:30), first event
         shareUrl: 'https://hein-wai-oo-mo-mo-aung-win.vercel.app',
         shareTitle: 'Hein Wai Oo & Mo Mo Aung Win — Wedding Invitation',
         shareText: 'ဒေါက်တာ ဟိန်းဝေဦး နှင့် ဒေါက်တာ မို့မို့အောင်ဝင်း တို့၏ မင်္ဂလာပွဲ · 29.11.2026 နှင့် 06.12.2026'
@@ -3057,25 +3011,6 @@
         for (d = 0; d < cells.length; d += 7) rows += '<tr>' + cells.slice(d, d + 7).join('') + '</tr>';
         el.querySelector('.cal-body').innerHTML = rows;
       }
-
-      /* ---------- countdown ---------- */
-      var cd = $('c-d'), ch = $('c-h'), cm = $('c-m'), cs = $('c-s'), countBox = $('count');
-      function pad(n) { return n < 10 ? '0' + n : '' + n; }
-      function tick() {
-        var diff = CONFIG.eventDate - Date.now();
-        if (diff <= 0) {
-          cd.textContent = ch.textContent = cm.textContent = cs.textContent = '00';
-          countBox.classList.add('done');
-          return;
-        }
-        var s = Math.floor(diff / 1000);
-        cd.textContent = Math.floor(s / 86400);
-        ch.textContent = pad(Math.floor(s % 86400 / 3600));
-        cm.textContent = pad(Math.floor(s % 3600 / 60));
-        cs.textContent = pad(s % 60);
-        setTimeout(tick, 1000 - (Date.now() % 1000));
-      }
-      tick();
 
       /* ---------- "Scan here" badge -> QR / share popup ---------- */
       (function qrPopup() {

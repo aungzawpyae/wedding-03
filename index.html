@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&family=Caveat:wght@400;500&family=Noto+Serif+Myanmar:wght@400;500;600&family=Noto+Sans+Myanmar:wght@400;500&display=swap">
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&family=Noto+Serif+Myanmar:wght@400;500;600&family=Noto+Sans+Myanmar:wght@400;500&display=swap">
   <style>
     /* ================================================================
    DESIGN TOKENS
@@ -46,7 +46,6 @@
 
       --f-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
       --f-script: 'Great Vibes', 'Brush Script MT', cursive;
-      --f-hand: 'Caveat', 'Comic Sans MS', cursive;
       --f-my: 'Noto Serif Myanmar', 'Myanmar Text', 'Pyidaungsu', serif;
       --f-my-body: 'Noto Sans Myanmar', 'Myanmar Text', 'Pyidaungsu', sans-serif;
 
@@ -172,10 +171,6 @@
     .script {
       font-family: var(--f-script);
       font-weight: 400
-    }
-
-    .hand {
-      font-family: var(--f-hand)
     }
 
     .my {
@@ -892,22 +887,34 @@
     .gallery figure {
       margin: 0;
       position: relative;
-      min-width: 0
+      min-width: 0;
+      padding: 5px;
+      border-radius: 14px;
+      background: #fff;
+      box-shadow: 0 0 0 1px var(--line), 0 14px 28px -20px rgba(94, 34, 51, .45)
     }
 
-    .gallery img {
+    .gallery figure > img {
+      display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 4px;
-      aspect-ratio: 3/4
+      border-radius: 10px;
+      aspect-ratio: 3/4;
+      transition: transform .6s ease, filter .6s ease
+    }
+
+    @media (hover: hover) {
+      .gallery figure:hover > img {
+        filter: saturate(1.08) brightness(1.03)
+      }
     }
 
     .gallery .wide {
       grid-column: 1/-1
     }
 
-    .gallery .wide img {
+    .gallery .wide > img {
       aspect-ratio: 16/9
     }
 
@@ -1346,7 +1353,11 @@
     /* ---------- Calendar ---------- */
     .cal {
       max-width: 340px;
-      margin: 0 auto
+      margin: 14px auto 0
+    }
+
+    .cal + .date-row {
+      margin-top: 34px !important
     }
 
     .cal-head {
@@ -2024,20 +2035,46 @@
     #cover.heart-design .cover-photo {
       position: relative;
       isolation: auto;
-      width: min(74vw, 300px);
+      width: min(66vw, 262px);
       aspect-ratio: auto;
-      padding: 9px;
-      margin: 20px auto 6px;
+      padding: 8px;
+      margin: 30px auto 10px;
       overflow: visible;
       border: 0;
-      border-radius: 50% 50% 10px 10px / 34% 34% 10px 10px;
-      background: linear-gradient(160deg, #f3d9c9, #e8bfc6 55%, #efd3c2);
-      box-shadow: 0 22px 44px -22px rgba(94, 34, 51, .5);
+      border-radius: 50% 50% 12px 12px / 33% 33% 12px 12px;
+      background: linear-gradient(165deg, #fdf3ee, #f2d6d9 50%, #f7e4d6);
+      box-shadow:
+        0 0 0 1px rgba(190, 154, 91, .55),
+        0 28px 50px -26px rgba(94, 34, 51, .55);
       filter: none;
     }
 
+    /* small gold diamond crowning the arch */
     #cover.heart-design .cover-photo::before {
-      display: none;
+      display: block;
+      content: "";
+      position: absolute;
+      z-index: 3;
+      inset: auto;
+      top: -20px;
+      left: 50%;
+      width: 9px;
+      height: 9px;
+      background: #be9a5b;
+      transform: translateX(-50%) rotate(45deg);
+      box-shadow: 0 0 0 4px #fbf1ee;
+      -webkit-mask: none;
+      mask: none;
+    }
+
+    /* second hairline arch for a double-frame look */
+    #cover.heart-design .cover-photo::after {
+      content: "";
+      position: absolute;
+      inset: -9px;
+      border: 1px solid rgba(190, 154, 91, .45);
+      border-radius: 50% 50% 16px 16px / 33% 33% 16px 16px;
+      pointer-events: none;
     }
 
     #cover.heart-design .cover-heart-window {
@@ -2045,10 +2082,10 @@
       position: relative;
       inset: auto;
       width: 100%;
-      aspect-ratio: 3 / 3.7;
+      aspect-ratio: 2 / 3;
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, .7);
-      border-radius: 50% 50% 6px 6px / 33% 33% 6px 6px;
+      border: 2px solid #fff;
+      border-radius: 50% 50% 7px 7px / 33% 33% 7px 7px;
       background: #dfa9b4;
       -webkit-mask: none;
       mask: none;
@@ -2060,9 +2097,8 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 22%;
-      transform: scale(1.08) translateY(14px);
-      transform-origin: center center;
+      object-position: center 18%;
+      transform: none;
     }
 
     .cover-couple {
@@ -2119,17 +2155,36 @@
     }
 
     .cover-date-card {
+      position: relative;
       min-width: 0;
-      padding: 14px 5px 12px;
-      border: 1px solid rgba(190, 154, 91, .34);
-      border-radius: 10px;
-      background: rgba(255, 255, 255, .55);
-      box-shadow: 0 10px 24px -18px rgba(94, 34, 51, .5);
+      padding: 16px 6px 13px;
+      border: 1px solid rgba(190, 154, 91, .55);
+      border-radius: 14px 14px 10px 10px;
+      background:
+        radial-gradient(120% 80% at 50% 0%, rgba(255, 255, 255, .9), transparent 70%),
+        linear-gradient(165deg, #fdf1ee, #f6dfe0 55%, #f3e1d3);
+      box-shadow:
+        inset 0 0 0 3px rgba(255, 250, 247, .85),
+        inset 0 0 0 4px rgba(190, 154, 91, .22),
+        0 14px 26px -18px rgba(94, 34, 51, .55);
+    }
+
+    /* wine ribbon on top of each date card */
+    .cover-date-card::before {
+      content: "";
+      position: absolute;
+      top: -1px;
+      left: 50%;
+      width: 34px;
+      height: 4px;
+      border-radius: 0 0 4px 4px;
+      background: linear-gradient(90deg, #7b2a3f, #a93c58, #7b2a3f);
+      transform: translateX(-50%);
     }
 
     .cover-date-card .date-my {
       margin: 0;
-      color: #5e2233;
+      color: #7b2a3f;
       font-family: var(--f-my);
       font-size: 13px;
       font-weight: 600;
@@ -2137,8 +2192,12 @@
     }
 
     .cover-date-card .date-latin {
-      margin: 4px 0 0;
-      color: #be9a5b;
+      margin: 6px auto 0;
+      padding-top: 5px;
+      width: fit-content;
+      border-top: 1px solid rgba(190, 154, 91, .45);
+      color: #a8803f;
+      font-weight: 600;
       font-family: var(--f-serif);
       font-size: 13px;
       letter-spacing: .04em;
@@ -2178,10 +2237,15 @@
       z-index: 4;
       top: 38%;
       right: 14px;
-      width: clamp(82px, 22vw, 108px);
+      width: clamp(64px, 17vw, 80px);
       height: auto;
       aspect-ratio: 1;
       filter: drop-shadow(0 16px 30px rgba(94, 34, 51, .3));
+    }
+
+    #cover.heart-design .cover-scan .badge-ic {
+      width: 19px;
+      height: 19px
     }
 
     #cover.heart-design .corner {
@@ -2283,8 +2347,8 @@
       }
 
       #cover.heart-design .cover-photo {
-        width: min(58vw, 230px);
-        margin: 12px auto 4px;
+        width: min(50vw, 200px);
+        margin: 22px auto 8px;
         padding: 7px;
       }
 
@@ -2331,7 +2395,7 @@
 
       #cover.heart-design .cover-scan {
         right: 9px;
-        width: 78px;
+        width: 60px;
       }
 
       .cover-date-card .date-latin {
@@ -2403,6 +2467,10 @@
       <symbol id="i-share" viewBox="0 0 24 24">
         <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
           d="M12 3v12M7.5 7.5L12 3l4.5 4.5M5 12v7h14v-7" />
+      </symbol>
+      <symbol id="i-download" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+          d="M12 3v12M7.5 10.5 12 15l4.5-4.5M5 19h14" />
       </symbol>
       <symbol id="i-copy" viewBox="0 0 24 24">
         <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"
@@ -2499,7 +2567,7 @@
 
         <figure class="cover-photo">
           <span class="cover-heart-window">
-            <img src="img/1.jpg" alt="ဒေါက်တာ ဟိန်းဝေဦး နှင့် ဒေါက်တာ မို့မို့အောင်ဝင်း">
+            <img src="img/5.jpg" alt="ဒေါက်တာ ဟိန်းဝေဦး နှင့် ဒေါက်တာ မို့မို့အောင်ဝင်း">
           </span>
           <span class="heart-float one" aria-hidden="true">♥</span>
           <span class="heart-float two" aria-hidden="true">♥</span>
@@ -2528,7 +2596,7 @@
           </div>
         </div>
 
-        <button class="btn" id="open-btn" type="button" style="margin-top:14px" disabled aria-disabled="true">
+        <button class="btn" id="open-btn" type="button" style="margin-top:14px">
           <svg class="mail-button-icon" aria-hidden="true">
             <use href="#i-mail" />
           </svg>
@@ -2550,8 +2618,8 @@
 
     <!-- Hero -->
     <section class="hero">
-      <img class="hero-img" src="images/waterfall.jpg"
-        alt="ဒေါက်တာ ဟိန်းဝေဦး နှင့် ဒေါက်တာ မို့မို့အောင်ဝင်း ရေတံခွန်ရှေ့တွင်" fetchpriority="high">
+      <img class="hero-img" src="img/4.jpg"
+        alt="ဒေါက်တာ ဟိန်းဝေဦး နှင့် ဒေါက်တာ မို့မို့အောင်ဝင်း " fetchpriority="high">
       <div class="hero-top">
         <p class="my" style="margin:0">မင်္ဂလာပွဲ ဖိတ်ကြားလွှာ</p>
       </div>
@@ -2586,7 +2654,7 @@
     </section>
 
     <section class="photo inset reveal">
-      <img src="images/kiss.jpg" alt="သတို့သား သတို့သမီး" loading="lazy">
+      <img src="img/18.jpg" alt="သတို့သား သတို့သမီး" loading="lazy">
     </section>
 
     <!-- Formal Burmese invitation (parents) -->
@@ -2620,7 +2688,7 @@
     </section>
 
     <section class="photo tilt reveal">
-      <img src="images/walk.jpg" alt="ရေကန်ဘေးတွင် လက်တွဲလျှောက်နေသော သတို့သား သတို့သမီး" loading="lazy">
+      <img src="img/12.jpg" alt="သတို့သား သတို့သမီး" loading="lazy">
     </section>
 
     <!-- Date & Time -->
@@ -2633,12 +2701,46 @@
         <span class="y">2026</span>
       </div>
       <p class="my-date">နေရာ (၁) · ၂၉ - ၁၁ - ၂၀၂၆ (တနင်္ဂနွေနေ့)</p>
+      <div class="cal reveal" data-y="2026" data-m="11" data-d="29">
+        <div class="cal-head"><span class="y">2026</span><span class="m">Nov</span></div>
+        <table aria-label="November 2026">
+          <thead>
+            <tr>
+              <th>MON</th>
+              <th>TUE</th>
+              <th>WED</th>
+              <th>THU</th>
+              <th>FRI</th>
+              <th>SAT</th>
+              <th>SUN</th>
+            </tr>
+          </thead>
+          <tbody class="cal-body"></tbody>
+        </table>
+      </div>
       <div class="date-row" aria-label="Sunday, 6 December 2026" style="margin-top:22px">
         <span class="m">Dec</span>
         <span class="mid"><small>Sunday</small><b>06</b></span>
         <span class="y">2026</span>
       </div>
       <p class="my-date">နေရာ (၂) · ၀၆ - ၁၂ - ၂၀၂၆ (တနင်္ဂနွေနေ့)</p>
+      <div class="cal reveal" data-y="2026" data-m="12" data-d="6">
+        <div class="cal-head"><span class="y">2026</span><span class="m">Dec</span></div>
+        <table aria-label="December 2026">
+          <thead>
+            <tr>
+              <th>MON</th>
+              <th>TUE</th>
+              <th>WED</th>
+              <th>THU</th>
+              <th>FRI</th>
+              <th>SAT</th>
+              <th>SUN</th>
+            </tr>
+          </thead>
+          <tbody class="cal-body"></tbody>
+        </table>
+      </div>
       <p class="time">7:00 AM – 11:00 AM</p>
       <p class="my-date">မနက် ၇:၀၀ နာရီမှ ၁၁:၀၀ နာရီအထိ</p>
 
@@ -2647,13 +2749,13 @@
           href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Hein+Wai+Oo+%26+Mo+Mo+Aung+Win+%E2%80%94+Wedding+Event+1&amp;dates=20261129T003000Z/20261129T043000Z&amp;location=Nay+Pyi+Taw%2C+Zeyar+Thiri+Township&amp;details=7%3A00+AM+to+11%3A00+AM">
           <svg aria-hidden="true">
             <use href="#i-cal" />
-          </svg> Calendar တွင် သိမ်းရန်
+          </svg> Save 29 Nov · Nay Pyi Taw
         </a>
         <a class="btn ghost" id="gcal-second" target="_blank" rel="noopener"
           href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Hein+Wai+Oo+%26+Mo+Mo+Aung+Win+%E2%80%94+Wedding+Event+2&amp;dates=20261206T003000Z/20261206T043000Z&amp;location=Bago%2C+Bago+Region&amp;details=7%3A00+AM+to+11%3A00+AM">
           <svg aria-hidden="true">
             <use href="#i-cal" />
-          </svg> ဒုတိယရက်ကို သိမ်းရန်
+          </svg> Save 6 Dec · Bago
         </a>
       </div>
     </section>
@@ -2694,23 +2796,28 @@
       <p class="eyebrow">Our Moments</p>
       <h2 class="title" style="margin-bottom:26px">Gallery</h2>
       <div class="gallery">
-        <figure class="reveal"><img src="images/veil.jpg" alt="ရေတံခွန်ရှေ့ ပါးပါးလွှာလွှာ ကန့်လန့်ကာအောက်တွင်"
-            loading="lazy"></figure>
+        <figure class="wide reveal"><img src="img/21.jpg" alt="သတို့သား သတို့သမီး" loading="lazy"
+            style="object-position:50% 35%"></figure>
+        <figure class="reveal"><img src="img/10.jpg" alt="မြန်မာဝတ်စုံဖြင့် သတို့သား သတို့သမီး" loading="lazy"></figure>
         <figure class="reveal">
-          <img src="images/waterfall.jpg" alt="ရေတံခွန်ရှေ့တွင် ဖက်ထားကြသော နှစ်ဦး" loading="lazy"
-            style="object-position:50% 70%">
+          <img src="img/3.jpg" alt="သတို့သား သတို့သမီး" loading="lazy" style="object-position:50% 30%">
           <svg class="badge" viewBox="0 0 100 100" aria-hidden="true">
             <defs>
               <path id="circ" d="M50,50 m-36,0 a36,36 0 1,1 72,0 a36,36 0 1,1 -72,0" />
             </defs>
             <circle cx="50" cy="50" r="48" fill="#fff" opacity=".92" />
             <text>
-              <textPath href="#circ">HAPPY WEDDING · PHYO &amp; MOE · </textPath>
+              <textPath href="#circ">HAPPY WEDDING · HEIN &amp; MOMO · </textPath>
             </text>
             <use href="#i-heart" x="40" y="40" width="20" height="20" style="color:var(--rose)" />
           </svg>
         </figure>
-        <figure class="wide reveal"><img src="images/hands.jpg" alt="လက်ချင်းဆက်ထားသော လက်များ" loading="lazy"></figure>
+        <figure class="reveal"><img src="img/15.jpg" alt="သတို့သား သတို့သမီး" loading="lazy"></figure>
+        <figure class="reveal"><img src="img/11.jpg" alt="မြန်မာဝတ်စုံဖြင့် သတို့သမီး" loading="lazy"></figure>
+        <figure class="wide reveal"><img src="img/1.jpg" alt="သတို့သား သတို့သမီး" loading="lazy"
+            style="object-position:50% 30%"></figure>
+        <figure class="reveal"><img src="img/19.jpg" alt="သတို့သား သတို့သမီး" loading="lazy"></figure>
+        <figure class="reveal"><img src="img/20.jpg" alt="သတို့သား သတို့သမီး" loading="lazy"></figure>
       </div>
     </section>
 
@@ -2735,26 +2842,7 @@
 
     <!-- Calendar + countdown -->
     <section class="sec" id="calendar">
-      <div class="cal reveal">
-        <div class="cal-head"><span class="y">2026</span><span class="m">11</span></div>
-        <table aria-label="November 2026">
-          <thead>
-            <tr>
-              <th>MON</th>
-              <th>TUE</th>
-              <th>WED</th>
-              <th>THU</th>
-              <th>FRI</th>
-              <th>SAT</th>
-              <th>SUN</th>
-            </tr>
-          </thead>
-          <tbody id="cal-body"></tbody>
-        </table>
-      </div>
-      <p class="my-date" style="margin-top:12px">ဒုတိယရက် — ၀၆ - ၁၂ - ၂၀၂၆ (တနင်္ဂနွေနေ့)</p>
-
-      <p class="my" style="margin:30px 0 0;font-size:14.5px;line-height:2.1">
+      <p class="my" style="margin:0;font-size:14.5px;line-height:2.1">
         ဆွေမျိုးသူငယ်ချင်းများ ကြွရောက်ချီးမြှင့်ပေးကြပါရန်<br>
         လေးစားစွာဖြင့် ဖိတ်ကြားအပ်ပါသည်။
       </p>
@@ -2794,8 +2882,7 @@
     </svg>
   </button>
   <div class="dock" id="dock" hidden style="justify-content:flex-end">
-    <a class="round" href="https://maps.app.goo.gl/bYWvmEsvZMbLyb5G8?g_st=ic" target="_blank" rel="noopener"
-      aria-label="ပထမနေရာ Google Maps">
+    <a class="round" href="#venue" aria-label="မင်္ဂလာပွဲ နေရာများ (Venue) သို့ သွားရန်">
       <svg aria-hidden="true">
         <use href="#i-pin" />
       </svg>
@@ -2814,16 +2901,17 @@
       <p class="muted" style="margin:0 0 14px;font-size:13px">QR ကို scan လုပ်၍ သို့မဟုတ် link ကို ကူးယူ၍
         မျှဝေနိုင်ပါသည်</p>
       <div class="qr-box"><img id="qr-img"
-          src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27450%27%20height%3D%27450%27%20class%3D%27segno%27%3E%3Cg%20transform%3D%27scale%2810%29%27%3E%3Cpath%20class%3D%27qrline%27%20stroke%3D%27%23c94f6c%27%20d%3D%27M2%202.5h7m27%200h7m-41%201h1m5%200h1m27%200h1m5%200h1m-41%201h1m1%200h3m1%200h1m27%200h1m1%200h3m1%200h1m-41%201h1m1%200h3m1%200h1m27%200h1m1%200h3m1%200h1m-41%201h1m1%200h3m1%200h1m27%200h1m1%200h3m1%200h1m-41%201h1m5%200h1m27%200h1m5%200h1m-41%201h7m27%200h7m-41%2028h7m-7%201h1m5%200h1m-7%201h1m1%200h3m1%200h1m-7%201h1m1%200h3m1%200h1m-7%201h1m1%200h3m1%200h1m-7%201h1m5%200h1m-7%201h7%27%2F%3E%3Cpath%20class%3D%27qrline%27%20stroke%3D%27%235b4349%27%20d%3D%27M10%202.5h2m6%200h1m1%200h1m1%200h1m2%200h2m3%200h2m1%200h2m-25%201h1m2%200h1m2%200h1m1%200h3m1%200h1m3%200h1m2%200h1m1%200h1m2%200h1m-25%201h2m3%200h1m1%200h1m1%200h1m1%200h1m3%200h1m2%200h1m1%200h3m1%200h1m-24%201h2m1%200h5m4%200h1m10%200h1m-22%201h1m1%200h2m2%200h2m1%200h1m3%200h1m1%200h1m1%200h1m1%200h3m-25%201h1m1%200h1m3%200h2m3%200h3m2%200h2m1%200h1m2%200h1m1%200h1m-25%201h1m1%200h1m1%200h1m1%200h1m1%200h1m1%200h1m1%200h1m1%200h1m1%200h1m1%200h1m1%200h1m1%200h1m1%200h1m-25%201h1m3%200h2m3%200h1m2%200h1m1%200h3m2%200h2m1%200h1m1%200h1m-31%201h3m1%200h1m1%200h1m3%200h2m1%200h3m1%200h3m2%200h4m1%200h1m1%200h5m2%200h3m-41%201h3m1%200h1m2%200h1m1%200h2m1%200h1m1%200h2m2%200h3m1%200h1m1%200h3m1%200h1m1%200h7m1%200h1m1%200h1m-41%201h3m3%200h1m5%200h3m1%200h1m5%200h1m1%200h1m2%200h2m3%200h1m1%200h1m-35%201h1m4%200h1m4%200h1m1%200h1m7%200h3m1%200h1m1%200h3m1%200h6m1%200h1m1%200h1m-40%201h1m1%200h1m3%200h2m2%200h1m1%200h2m2%200h1m1%200h4m7%200h1m1%200h2m1%200h1m2%200h3m-32%201h1m3%200h1m1%200h4m1%200h1m1%200h1m2%200h1m1%200h3m1%200h1m2%200h1m1%200h6m-41%201h2m3%200h4m1%200h5m5%200h3m1%200h1m1%200h1m2%200h2m1%200h2m1%200h3m1%200h1m-40%201h1m2%200h1m5%200h1m2%200h1m1%200h2m1%200h1m1%200h1m4%200h3m1%200h1m1%200h1m3%200h2m1%200h1m-36%201h2m1%200h2m3%200h1m2%200h2m1%200h1m1%200h1m2%200h3m1%200h1m3%200h1m3%200h1m1%200h1m2%200h1m-39%201h1m2%200h2m5%200h1m2%200h2m5%200h3m1%200h1m5%200h3m1%200h7m-41%201h1m5%200h1m1%200h1m4%200h1m2%200h2m3%200h2m1%200h1m2%200h1m2%200h1m3%200h1m1%200h2m1%200h1m-39%201h4m4%200h1m2%200h4m1%200h1m3%200h1m5%200h2m2%200h2m3%200h2m2%200h1m-40%201h3m1%200h3m2%200h1m2%200h2m3%200h2m1%200h2m2%200h2m1%200h1m1%200h1m5%200h1m1%200h1m1%200h1m-38%201h1m1%200h1m2%200h1m1%200h2m3%200h1m3%200h1m1%200h1m1%200h2m3%200h2m1%200h1m1%200h2m1%200h1m2%200h2m-41%201h2m2%200h1m1%200h1m1%200h1m1%200h3m2%200h2m1%200h3m1%200h1m3%200h3m1%200h1m1%200h1m3%200h1m-34%201h1m3%200h6m1%200h3m2%200h2m2%200h1m1%200h1m1%200h2m1%200h1m1%200h1m1%200h1m1%200h1m3%200h1m-41%201h5m1%200h2m5%200h1m1%200h1m3%200h2m8%200h1m3%200h1m4%200h1m1%200h1m-40%201h1m5%200h1m2%200h7m1%200h4m7%200h1m1%200h1m1%200h5m2%200h1m-41%201h2m1%200h1m1%200h2m4%200h3m2%200h1m1%200h5m2%200h1m1%200h2m1%200h1m1%200h2m1%200h2m-37%201h2m3%200h1m1%200h1m9%200h3m4%200h2m2%200h1m1%200h3m2%200h3m-36%201h5m1%200h3m1%200h2m1%200h1m1%200h2m2%200h2m3%200h1m1%200h2m1%200h1m1%200h1m3%200h3m-40%201h2m1%200h1m3%200h2m2%200h3m1%200h6m2%200h3m1%200h1m4%200h1m3%200h1m1%200h1m1%200h1m-41%201h1m4%200h2m1%200h2m2%200h1m1%200h4m6%200h1m1%200h6m1%200h3m1%200h2m-39%201h1m1%200h2m1%200h1m1%200h2m2%200h1m6%200h5m1%200h1m1%200h2m3%200h5m1%200h1m1%200h1m-40%201h1m1%200h1m3%200h2m1%200h4m3%200h1m2%200h7m1%200h1m1%200h1m1%200h6m1%200h3m-33%201h2m1%200h2m1%200h1m1%200h3m2%200h2m3%200h1m1%200h5m3%200h1m2%200h2m-32%201h1m3%200h1m3%200h1m1%200h3m1%200h1m1%200h1m1%200h3m1%200h2m1%200h1m1%200h2m-29%201h1m2%200h1m1%200h2m1%200h2m4%200h1m3%200h6m3%200h2m2%200h1m-33%201h1m1%200h1m1%200h4m1%200h1m1%200h1m5%200h1m1%200h1m4%200h9m-33%201h5m1%200h1m2%200h1m1%200h6m1%200h1m2%200h2m1%200h2m1%200h1m1%200h4m-33%201h1m1%200h3m1%200h1m1%200h1m3%200h1m2%200h2m2%200h2m1%200h10m-31%201h1m1%200h2m3%200h1m1%200h4m1%200h1m2%200h3m3%200h1m1%200h1m1%200h1m2%200h1m-24%201h3m1%200h2m2%200h1m2%200h1m1%200h1m1%200h1m2%200h3%27%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E"
-          alt="ဖိတ်ကြားလွှာ QR code" width="220" height="220"></div>
+          src="https://api.qrserver.com/v1/create-qr-code/?size=450x450&amp;color=7b2a3f&amp;bgcolor=ffffff&amp;qzone=1&amp;format=svg&amp;data=https%3A%2F%2Fhein-wai-oo-mo-mo-aung-win.vercel.app"
+          alt="ဖိတ်ကြားလွှာ QR code — နှိပ်၍ download ရယူပါ" title="နှိပ်၍ QR ကို download ရယူပါ" width="220" height="220"
+          style="cursor:pointer"></div>
       <p class="qr-url" id="qr-url">hein-wai-oo-mo-mo-aung-win.vercel.app</p>
       <div class="actions" style="margin-top:14px">
         <button class="btn ghost" id="qr-copy" type="button"><svg aria-hidden="true">
             <use href="#i-copy" />
           </svg> Link ကူးရန်</button>
-        <button class="btn" id="qr-share" type="button" hidden><svg aria-hidden="true">
-            <use href="#i-share" />
-          </svg> Share</button>
+        <button class="btn" id="qr-download" type="button"><svg aria-hidden="true">
+            <use href="#i-download" />
+          </svg> QR Download</button>
       </div>
       <p class="qr-status" id="qr-status" aria-live="polite"></p>
     </div>
@@ -2879,7 +2967,6 @@
       /* ---------- CONFIG: edit these to reuse the template ---------- */
       var CONFIG = {
         eventDate: new Date('2026-11-29T07:00:00+06:30'),   // Myanmar time (UTC+6:30), first event
-        calendar: { year: 2026, month: 11, day: 29 },
         shareUrl: 'https://hein-wai-oo-mo-mo-aung-win.vercel.app',
         shareTitle: 'Hein Wai Oo & Mo Mo Aung Win — Wedding Invitation',
         shareText: 'ဒေါက်တာ ဟိန်းဝေဦး နှင့် ဒေါက်တာ မို့မို့အောင်ဝင်း တို့၏ မင်္ဂလာပွဲ · 29.11.2026 နှင့် 06.12.2026'
@@ -2951,8 +3038,11 @@
         wrap.innerHTML = html;
       }
 
-      /* ---------- calendar (Monday first) ---------- */
-      (function buildCalendar(y, m, big) {
+      /* ---------- calendars (Monday first), one per event date ---------- */
+      document.querySelectorAll('.cal[data-y]').forEach(function (el) {
+        buildCalendar(el, +el.dataset.y, +el.dataset.m, +el.dataset.d);
+      });
+      function buildCalendar(el, y, m, big) {
         var first = new Date(y, m - 1, 1), offset = (first.getDay() + 6) % 7;
         var days = new Date(y, m, 0).getDate(), cells = [], d;
         for (d = 0; d < offset; d++) cells.push('<td></td>');
@@ -2965,8 +3055,8 @@
         while (cells.length % 7) cells.push('<td></td>');
         var rows = '';
         for (d = 0; d < cells.length; d += 7) rows += '<tr>' + cells.slice(d, d + 7).join('') + '</tr>';
-        $('cal-body').innerHTML = rows;
-      })(CONFIG.calendar.year, CONFIG.calendar.month, CONFIG.calendar.day);
+        el.querySelector('.cal-body').innerHTML = rows;
+      }
 
       /* ---------- countdown ---------- */
       var cd = $('c-d'), ch = $('c-h'), cm = $('c-m'), cs = $('c-s'), countBox = $('count');
@@ -2990,9 +3080,9 @@
       /* ---------- "Scan here" badge -> QR / share popup ---------- */
       (function qrPopup() {
         var pop = $('qr-pop'), btn = $('scan-btn'); if (!pop || !btn) return;
-        var status = $('qr-status'), urlEl = $('qr-url'), shareBtn = $('qr-share');
+        var status = $('qr-status'), urlEl = $('qr-url');
         function open() {
-          $('qr-img').src = 'https://api.qrserver.com/v1/create-qr-code/?size=450x450&data=' + encodeURIComponent(CONFIG.shareUrl);
+          $('qr-img').src = 'https://api.qrserver.com/v1/create-qr-code/?size=450x450&color=7b2a3f&bgcolor=ffffff&qzone=1&format=svg&data=' + encodeURIComponent(CONFIG.shareUrl);
           urlEl.textContent = new URL(CONFIG.shareUrl).host;
           pop.hidden = false; document.body.classList.add('locked');
           requestAnimationFrame(function () { pop.classList.add('show'); });
@@ -3019,12 +3109,23 @@
             navigator.clipboard.writeText(CONFIG.shareUrl).then(function () { status.textContent = 'Link ကူးယူပြီးပါပြီ ✓'; }).catch(fallback);
           } else fallback();
         });
-        if (navigator.share) {
-          shareBtn.hidden = false;
-          shareBtn.addEventListener('click', function () {
-            navigator.share({ title: CONFIG.shareTitle, text: CONFIG.shareText, url: CONFIG.shareUrl }).catch(function () { });
+        // QR Download: button or tapping the QR image saves a PNG
+        function downloadQr() {
+          var src = 'https://api.qrserver.com/v1/create-qr-code/?size=1000x1000&color=7b2a3f&bgcolor=ffffff&qzone=2&format=png&data=' + encodeURIComponent(CONFIG.shareUrl);
+          var name = 'hein-wai-oo-mo-mo-aung-win-qr.png';
+          status.textContent = 'QR ကို download လုပ်နေပါသည်…';
+          fetch(src).then(function (r) { if (!r.ok) throw 0; return r.blob(); }).then(function (blob) {
+            var url = URL.createObjectURL(blob), a = document.createElement('a');
+            a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove();
+            setTimeout(function () { URL.revokeObjectURL(url); }, 1500);
+            status.textContent = 'QR ကို download ရယူပြီးပါပြီ ✓';
+          }).catch(function () {
+            window.open(src, '_blank', 'noopener');
+            status.textContent = 'QR ပုံကို ဖိနှိပ်၍ သိမ်းဆည်းပါ';
           });
         }
+        $('qr-download').addEventListener('click', downloadQr);
+        $('qr-img').addEventListener('click', downloadQr);
       })();
 
       /* ---------- card slider (scroll-snap) ---------- */
